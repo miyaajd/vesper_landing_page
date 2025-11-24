@@ -1,11 +1,1228 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vesper | landing</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- font -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/ywy3aan.css" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #222;
+        list-style: none;
+        text-decoration: none;
+      }
+      body {
+        font-family: "Pretendard", sans-serif;
+      }
+      .serif {
+        font-family: "benton-modern-display", serif;
+      }
+      button {
+        font-family: "Pretendard", sans-serif;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      button:hover {
+        opacity: 0.8;
+      }
+      .inner {
+        max-width: 1920px !important;
+        margin: auto !important;
+        background-color: #fafaf6;
+      }
+      .h2 {
+        font-size: 36px;
+        font-weight: 500;
+        color: #333;
+      }
+      .p {
+        font-size: 16px;
+        color: #333;
+      }
+      /* mainVideo */
+      #mainVid {
+        width: 100%;
+        max-width: 1920px;
+        /* height: auto; */
+        height: 40vw;
+        object-fit: cover;
+        margin: auto !important;
+        padding: 0;
+        display: flex;
+        align-items: center;
+      }
+      /* hands */
+      .hands {
+        width: 100%;
+        padding: 100px 30px 120px 180px;
+      }
+      .hands-top {
+        width: 80%;
+      }
+      .hands-txt-box {
+        width: 100%;
+      }
+      .hands-txt-box > p {
+        margin: 42px 0 25px 0;
+        line-height: 1.5;
+        /* max-width: 80%; */
+      }
+      .view-more-btn {
+        padding: 12px 24px;
+        border: none;
+        background-color: #e9e9ec;
+        /* border-radius: 8px; */
+        font-weight: 500;
+        color: #555;
+        font-size: 16px;
+      }
+      .white-btn {
+        background-color: #fff;
+      }
+      /*  */
+      .hands-bottom {
+        width: 70%;
+        margin-left: auto;
+        margin-top: 80px;
+      }
+      .handsSwiper {
+        width: 100%;
+      }
+      .handsSwiper > .swiper-wrapper > .swiper-slide > img {
+        width: 100%;
+        cursor: pointer;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        display: block;
+        border-radius: 20px;
+      }
+      .swiper-pagination-bullet-active {
+        background: #333 !important;
+      }
+      /* jiyeon */
+      .jiyeon {
+        width: 100%;
+        display: flex;
+      }
+      .jiyeon-left {
+        width: 50%;
+      }
+      .jiyeon-left > img {
+        width: 100%;
+        display: block;
+      }
+      .jiyeon-right {
+        width: 50%;
+        background-color: #e9e9ec;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0 145px;
+      }
+      .jiyeon-txt-box > p {
+        margin: 80px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        line-height: 1.4;
+      }
+      .jiyeon-txt-box > p > strong {
+        font-weight: 600;
+      }
+      /* interview */
+      .interview {
+        width: 100%;
+        padding: 50px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 80px;
+        background: radial-gradient(
+          circle,
+          #dcdce8 0%,
+          #fafaf6 90%,
+          #fafaf6 100%
+        );
+      }
+      .interview-txt {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .interview-txt > h2 {
+        color: #383848;
+        font-weight: bold;
+      }
+      .interview-txt > span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #444;
+      }
+      .down-angle {
+        display: none;
+      }
+      .right-angle {
+        display: inline-block;
+      }
+      .circle {
+        width: 300px;
+        height: 300px;
+        background-color: #fff;
+        border-radius: 200px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      .circle > img {
+        width: 100%;
+        cursor: pointer;
+      }
+      .circle:hover {
+        transform: scale(1.1);
+      }
+      /* video */
+      .interview-bg {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: fixed;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        z-index: 999999999999999999;
+      }
+      .interview-bg.active {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+      .video {
+        position: relative;
+        width: 0;
+        margin: auto !important;
+        border-radius: 50px;
+        overflow: hidden;
+        transform: scale(0);
+        transition: all 0.5s ease;
+        opacity: 0;
+      }
+      .interview-bg.active .video {
+        width: auto !important;
+        height: 50vw;
+        transform: scale(1) !important;
+        opacity: 1 !important;
+      }
+      .video > video {
+        height: 100%;
+        display: block;
+      }
+      .video-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+      }
+      .video-close > .p {
+        font-weight: 500;
+        color: #fff;
+        padding: 7px 12px 5px 12px;
+        background-color: #333;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+      /* ===== VESPER: Product slider ===== */
+      .v-product {
+        padding: 30px;
+        border-top: 0.5px solid #ddd;
+        border-bottom: 0.5px solid #ddd;
+        width: 100%;
+        display: flex;
+        position: relative;
+      }
+
+      /* 아임웹 충돌 방지를 위해 !important 추가 */
+      .v-product__desc {
+        /* position: relative; */
+        width: 55%;
+        display: none !important;
+        flex-direction: column;
+        padding: 100px 0;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* 아임웹 충돌 방지를 위해 !important 추가 */
+      .v-product__desc.is-active {
+        display: flex !important;
+      }
+
+      .v-product__title p {
+        font-family: "Times New Roman", serif;
+        font-size: 36px;
+        color: #333;
+      }
+
+      .v-product__dscr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 2;
+        color: #333;
+      }
+
+      .v-product__dscr h5 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .v-product__dscr span {
+        color: #333;
+      }
+
+      .v-product__dscr .strike {
+        color: #aaa;
+        text-decoration: line-through;
+      }
+
+      .v-product__dscr .discount {
+        color: #fff;
+        background-color: #333;
+        padding: 3px 4px 2px;
+        font-size: 14px;
+      }
+
+      .v-product__btn {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .v-product__btn button {
+        all: unset;
+        cursor: pointer;
+        border: 1px solid #333;
+        padding: 12px 24px;
+        font-size: 14px;
+        line-height: 1;
+        display: inline-block;
+        font-weight: 500;
+      }
+
+      .v-product__img {
+        width: 45%;
+        background-color: #e9e9ec;
+        padding: 100px 0;
+      }
+
+      /* 아임웹 충돌 방지를 위해 !important 추가 */
+      .v-product__img img {
+        width: 45%;
+        display: none !important;
+        margin: 0 auto;
+      }
+
+      /* 아임웹 충돌 방지를 위해 !important 추가 */
+      .v-product__img img.is-active {
+        display: block !important;
+      }
+
+      .v-product__pager {
+        position: absolute;
+        right: 48% !important;
+        top: 50%;
+        transform: translateX(-50%);
+        font-size: 32px;
+        color: #1f1f1f;
+        font-weight: 300;
+        cursor: pointer;
+        user-select: none;
+      }
+      /* ===== Link & Event Section ===== */
+      .link-section {
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        margin: 50px 0;
+      }
+      .link-section .link-list {
+        display: flex;
+        list-style: none;
+        gap: 2%;
+        padding: 0 2%;
+        margin: 0;
+      }
+      .link-section .link-list li {
+        width: calc(100% / 3);
+        position: relative;
+        list-style: none;
+        border-radius: 40px;
+        overflow: hidden;
+      }
+      .link-section .link-list img {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        display: block;
+      }
+      .link-section .link-content {
+        width: 100%;
+        height: 100%;
+        padding: 10% 8%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .link-section .txt-box {
+        color: #fff;
+      }
+      .link-section .txt-box h3 {
+        font-family: "pretendard";
+        font-size: 30px;
+        /* padding-bottom: 10px; */
+        font-weight: 400;
+        color: #fff;
+      }
+      .link-section .txt-box p {
+        font-size: 18px;
+        color: #fff;
+      }
+      .link-section .link-content a {
+        text-decoration: none;
+      }
+      .link-section .link-content button {
+        all: unset;
+        display: block;
+        color: #666;
+        font-size: 18px;
+        line-height: 1;
+        font-weight: 600;
+        aspect-ratio: 1 / 1;
+        width: 55px;
+        background: rgba(255, 255, 255, 0.85);
+        /* background: #fff; */
+        cursor: pointer;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        transition: all 0.2s ease-in-out;
+      }
+      .link-section .link-content button:hover {
+        transform: scale(1.1);
+      }
+
+      /* ========== 🖥 1024px 이하 : 태블릿 가로 레이아웃 ========== */
+      @media (max-width: 1024px) {
+        #mainVid {
+          height: 80vw;
+        }
+        .hands {
+          padding: 80px 60px;
+        }
+
+        .hands-top {
+          width: 100%;
+        }
+
+        .hands-txt-box > p {
+          font-size: 15px;
+          line-height: 1.6;
+        }
+
+        .hands-bottom {
+          width: 100%;
+          margin-top: 60px;
+        }
+
+        .jiyeon {
+          flex-direction: column;
+        }
+
+        .jiyeon-left,
+        .jiyeon-right {
+          width: 100%;
+        }
+
+        .jiyeon-right {
+          padding: 80px 100px;
+        }
+
+        .interview {
+          flex-direction: column;
+          gap: 40px;
+          text-align: center;
+        }
+
+        .interview-txt {
+          text-align: center;
+        }
+        .down-angle {
+          display: inline-block;
+        }
+        .right-angle {
+          display: none;
+        }
+
+        .interview-bg.active .video {
+          height: 80vw;
+        }
+
+        .link-section .txt-box h3 {
+          font-size: 24px;
+          /* padding-bottom: 8px; */
+        }
+        .link-section .txt-box p {
+          font-size: 14px;
+          color: #fff;
+        }
+
+        .link-section .link-content button {
+          font-size: 16px;
+          width: 40px;
+        }
+      }
+
+      /* ========== 📱 768px 이하 : 태블릿 세로 / 작은 노트북 ========== */
+      @media (max-width: 768px) {
+        #mainVid {
+          height: 75vw;
+        }
+        .h2 {
+          font-size: 28px;
+        }
+
+        .p {
+          font-size: 15px;
+        }
+
+        .hands {
+          padding: 60px 40px;
+        }
+
+        .hands-top {
+          width: 100%;
+        }
+
+        .hands-txt-box > p {
+          font-size: 14px;
+        }
+
+        .view-more-btn {
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+
+        .hands-bottom {
+          width: 100%;
+          margin-top: 50px;
+        }
+
+        .jiyeon {
+          flex-direction: column;
+        }
+
+        .jiyeon-right {
+          padding: 60px 60px;
+        }
+
+        .jiyeon-txt-box > p {
+          margin: 50px 0;
+          gap: 20px;
+          font-size: 15px;
+        }
+
+        .interview {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .interview-bg.active .video {
+          height: 100vw;
+        }
+
+        .circle {
+          width: 240px;
+          height: 240px;
+        }
+
+        .v-product {
+          flex-direction: column;
+          gap: 32px;
+          padding: 40px 20px;
+        }
+
+        .v-product__desc,
+        .v-product__img {
+          width: 100%;
+          padding: 40px 0;
+        }
+
+        .v-product__title p {
+          font-size: 26px;
+        }
+
+        .v-product__img img {
+          width: 60% !important;
+        }
+
+        .v-product__pager {
+          right: 10% !important;
+          top: 15%;
+        }
+        .link-section .link-list {
+          flex-direction: column;
+          gap: 30px;
+        }
+        .link-section .link-list li {
+          width: 90%;
+          margin: auto;
+        }
+        .link-section .txt-box h3 {
+          font-size: 32px;
+        }
+
+        .link-section .txt-box p {
+          font-size: 18px;
+        }
+        .link-section .link-content button {
+          font-size: 18px;
+          width: 55px;
+        }
+      }
+
+      /* ========== 📲 480px 이하 : 모바일 기준 ========== */
+      @media (max-width: 480px) {
+        .h2 {
+          font-size: 22px;
+        }
+
+        .p {
+          font-size: 14px;
+        }
+
+        .hands {
+          padding: 40px 24px;
+        }
+
+        .hands-txt-box > p {
+          margin: 32px 0 20px 0;
+          font-size: 13.5px;
+          line-height: 1.7;
+        }
+
+        .view-more-btn {
+          font-size: 13px;
+          padding: 8px 18px;
+        }
+
+        .hands-bottom {
+          width: 100%;
+          margin-top: 40px;
+        }
+
+        .jiyeon {
+          flex-direction: column;
+        }
+
+        .jiyeon-right {
+          padding: 40px 28px;
+        }
+
+        .jiyeon-txt-box > p {
+          font-size: 14px;
+          margin: 40px 0;
+          line-height: 1.5;
+        }
+
+        .circle {
+          width: 200px;
+          height: 200px;
+        }
+
+        .interview-txt > h2 {
+          font-size: 18px;
+        }
+
+        .interview-txt > span {
+          font-size: 15px;
+        }
+
+        .interview-bg.active .video {
+          height: 140vw;
+        }
+
+        .v-product {
+          padding: 30px 0;
+          flex-direction: column;
+        }
+
+        .v-product__title p {
+          font-size: 22px;
+        }
+
+        .v-product__dscr h5 {
+          font-size: 15px;
+        }
+
+        .v-product__btn button {
+          font-size: 12px;
+          padding: 8px 16px;
+        }
+
+        .v-product__pager {
+          right: 7% !important;
+          top: 17%;
+        }
+
+        .link-section {
+          margin: 30px 0;
+        }
+
+        .link-section .link-list {
+          gap: 20px;
+        }
+
+        .link-section .txt-box h3 {
+          font-size: 24px;
+        }
+
+        .link-section .txt-box p {
+          font-size: 16px;
+        }
+        .link-section .link-content button {
+          font-size: 16px;
+          width: 45px;
+        }
+      }
+
+      /* ========== 📱 360px 이하 : 초소형 기기 대응 ========== */
+      @media (max-width: 360px) {
+        .h2 {
+          font-size: 20px;
+        }
+
+        .p {
+          font-size: 13px;
+        }
+
+        .hands {
+          padding: 32px 16px;
+        }
+
+        .jiyeon-right {
+          padding: 32px 20px;
+        }
+
+        .jiyeon-txt-box > p {
+          font-size: 13px;
+          gap: 12px;
+        }
+
+        .circle {
+          width: 160px;
+          height: 160px;
+        }
+
+        .v-product__title p {
+          font-size: 20px;
+        }
+
+        .v-product__dscr h5 {
+          font-size: 14px;
+        }
+
+        .v-product__pager {
+          right: 2% !important;
+          top: 20%;
+        }
+
+        .link-section .txt-box h3 {
+          font-size: 20px;
+        }
+
+        .link-section .txt-box p {
+          font-size: 13px;
+        }
+        .link-section .link-content button {
+          font-size: 14px;
+          width: 35px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="inner">
+      <img
+        src="https://github.com/miyaajd/vesper/blob/main/images/visual-jiyeon.webp?raw=true"
+        alt="mainVid"
+        id="mainVid"
+      />
+      <div class="hands">
+        <div class="hands-top">
+          <div class="hands-txt-box">
+            <h2 class="h2 serif">Vesper Hands</h2>
+            <p class="p hands-p">
+              하루의 끝, 손끝에 머무는 향과 보습의 리추얼. Vésper Hand Cream은
+              산뜻한 로션처럼 가볍게 스며들어 깊은 보습과 편안한 진정을 부드럽게
+              전합니다.<br />
+              시어버터가 영양을 채우고, 마트리카리아꽃추출물이 피로를 달래며,
+              세라마이드 엔피와 동백나무씨오일이 손끝에 은은한 윤기와 단단한
+              장벽을 더합니다.<br />
+              하루의 온기를 담은 향이 손끝에 오래 머무는 순간, 그 시간이 바로
+              Vésper입니다.
+            </p>
+            <a href="https://www.vesper.kr/shop" target="_top" rel="noopener"
+              ><button class="view-more-btn">VIEW MORE</button></a
+            >
+          </div>
+        </div>
+        <div class="hands-bottom">
+          <!-- Swiper -->
+          <div class="swiper handsSwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/h-slide1.jpg?raw=true"
+                  alt="slide1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/h-slide2.jpg?raw=true"
+                  alt="slide2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/h-slide3.jpg?raw=true"
+                  alt="slide3"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/h-slide4.jpg?raw=true"
+                  alt="slide4"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/h-slide5.jpg?raw=true"
+                  alt="slide5"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/h-slide6.jpg?raw=true"
+                  alt="slide6"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+      <div class="jiyeon">
+        <div class="jiyeon-left">
+          <img
+            src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/jiyeon-left.png?raw=true"
+            alt="jiyeon"
+          />
+        </div>
+        <div class="jiyeon-right">
+          <div class="jiyeon-txt-box">
+            <h2 class="h2 serif">Jiyeon ☓ Vesper</h2>
+            <p class="p">
+              지연과 함께 맞이하는 베스페르의 첫 핸즈라인<br />
+              <span>
+                은은한 향과 깊은 보습으로 완성된 베스페르만의 무드를
+                느껴보세요<br />
+                손끝에 스며드는 부드러움, 향으로 기억되는 존재감<br />
+              </span>
+              <strong>베스페르의 핸즈라인을 만나보세요.</strong>
+            </p>
+            <a href="https://www.vesper.kr/shop" target="_top" rel="noopener"
+              ><button class="view-more-btn white-btn">VIEW MORE</button></a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="interview">
+        <div class="interview-txt">
+          <h2 class="h2">지연의 인터뷰 영상이 궁금하다면?</h2>
+          <span
+            >클릭해서 영상보기 <span class="down-angle">▼</span
+            ><span class="right-angle">▶</span></span
+          >
+        </div>
+        <div class="interview-video">
+          <div class="circle">
+            <img
+              src="https://github.com/miyaajd/vesper/blob/main/images/hands-swiper/interview-pre.jpg?raw=true"
+              alt="interview-pre"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="interview-bg">
+        <div class="video">
+          <video
+            id="interview"
+            src="https://cdn.jsdelivr.net/gh/miyaajd/vesper/video/interview.mp4"
+            type="video/mp4"
+            loop
+            muted
+            playsinline
+            controls
+            controlsList="nodownload"
+            oncontextmenu="return false;"
+          ></video>
+          <div class="video-close"><p class="p">Close</p></div>
+        </div>
+      </div>
+      <div class="v-product">
+        <div class="v-product__desc">
+          <div class="v-product__title">
+            <p class="serif">Best Product</p>
+          </div>
+          <div class="v-product__dscr">
+            <h5>Vesper Fiore Shell Hair Perfume Oil</h5>
+            <span style="margin-bottom: 48px"
+              >베스페르 피오레 쉘 퍼퓸 헤어 오일</span
+            >
+            <span class="strike">42,000원</span>
+            <p>
+              16,800원
+              <span class="discount">60%</span>
+            </p>
+          </div>
+          <a
+            class="v-product__btn"
+            href="https://www.vesper.kr/shop"
+            target="_top"
+            rel="noopener"
+          >
+            <button>SHOP NOW</button>
+          </a>
+        </div>
+
+        <div class="v-product__desc">
+          <div class="v-product__title">
+            <p>Best Product</p>
+          </div>
+          <div class="v-product__dscr">
+            <h5>Vesper Rosa Selvatica Hair Perfume Oil</h5>
+            <span style="margin-bottom: 48px"
+              >베스페르 로사 셀바티카 퍼퓸 헤어 오일</span
+            >
+            <span class="strike">42,000원</span>
+            <p>
+              16,800원
+              <span class="discount">60%</span>
+            </p>
+          </div>
+          <a
+            class="v-product__btn"
+            href="https://www.vesper.kr/shop"
+            target="_top"
+            rel="noopener"
+          >
+            <button>SHOP NOW</button>
+          </a>
+        </div>
+
+        <div class="v-product__desc">
+          <div class="v-product__title">
+            <p>Best Product</p>
+          </div>
+          <div class="v-product__dscr">
+            <h5>Vesper White Bianco Hair Perfume Oil</h5>
+            <span style="margin-bottom: 48px"
+              >베스페르 화이트 비앙코 퍼퓸 헤어 오일</span
+            >
+            <span class="strike">42,000원</span>
+            <p>
+              16,800원
+              <span class="discount">60%</span>
+            </p>
+          </div>
+          <a
+            class="v-product__btn"
+            href="https://www.vesper.kr/shop"
+            target="_top"
+            rel="noopener"
+          >
+            <button>SHOP NOW</button>
+          </a>
+        </div>
+
+        <div class="v-product__img">
+          <img
+            src="https://github.com/miyaajd/vesper/blob/main/images/fi.png?raw=true"
+            alt="fiore"
+          />
+          <img
+            src="https://github.com/miyaajd/vesper/blob/main/images/ro.png?raw=true"
+            alt="rosa"
+          />
+          <img
+            src="https://github.com/miyaajd/vesper/blob/main/images/wh.png?raw=true"
+            alt="white bianco"
+          />
+        </div>
+
+        <div class="v-product__pager" id="vProductPager">&rsaquo;</div>
+      </div>
+      <!-- Link & Event Section -->
+      <div class="link-section">
+        <ul class="link-list">
+          <li>
+            <img
+              src="https://github.com/miyaajd/vesper/blob/main/images/event1-1.png?raw=true"
+              alt="brandstory"
+            />
+            <div class="link-content">
+              <div class="txt-box">
+                <h3 class="serif">Brand Story</h3>
+                <p class="p">브랜드 스토리</p>
+              </div>
+              <a
+                href="https://www.vesper.kr/STORES"
+                target="_top"
+                rel="noopener"
+              >
+                <button>→</button>
+              </a>
+            </div>
+          </li>
+          <li>
+            <img
+              src="https://github.com/miyaajd/vesper/blob/main/images/banner.png?raw=true"
+              alt="event"
+            />
+            <div class="link-content">
+              <div class="txt-box">
+                <h3 class="serif">Event</h3>
+                <p class="p">이벤트</p>
+              </div>
+              <!-- 블랙프라이데이 카테고리 주소 연결하기 ***************************************************************************************-->
+              <a href="https://www.vesper.kr/45" target="_top" rel="noopener">
+                <button>→</button>
+              </a>
+            </div>
+          </li>
+          <li>
+            <img
+              src="https://github.com/miyaajd/vesper/blob/main/images/event1-3.png?raw=true"
+              alt="notice"
+            />
+            <div class="link-content">
+              <div class="txt-box">
+                <h3 class="serif">Notice</h3>
+                <p class="p">공지사항</p>
+              </div>
+              <a href="https://www.vesper.kr/39" target="_top" rel="noopener">
+                <button>→</button>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- js -->
+    <script>
+      var swiper = new Swiper(".handsSwiper", {
+        slidesPerView: 4,
+        spaceBetween: 20,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        loop: true,
+        breakpoints: {
+          1200: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          480: {
+            slidesPerView: 1.5,
+            spaceBetween: 16,
+          },
+          360: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+        },
+      });
+      // interview-click
+      const interviewPre = document.querySelector(".circle > img");
+      const interWrap = document.querySelector(".interview-bg");
+      const video = document.getElementById("interview");
+      const body = document.body;
+      interviewPre.addEventListener("click", () => {
+        interWrap.classList.add("active");
+        video.play();
+        body.style.overflow = "hidden";
+      });
+      // interview-close
+      const interviewClose = document.querySelector(".video-close > .p");
+      interviewClose.addEventListener("click", (e) => {
+        e.stopPropagation();
+        interWrap.classList.remove("active");
+        body.style.overflow = "";
+        video.pause();
+      });
+      interWrap.addEventListener("click", (e) => {
+        if (e.target === interWrap) {
+          interWrap.classList.remove("active");
+          body.style.overflow = "";
+          video.pause();
+        }
+      });
+      // best-product
+      document.addEventListener("DOMContentLoaded", function () {
+        const root = document.querySelector(".v-product");
+        if (!root) return;
+
+        const pages = root.querySelectorAll(".v-product__desc");
+        const imgs = root.querySelectorAll(".v-product__img img");
+        const btn = document.getElementById("vProductPager");
+
+        const n = Math.min(pages.length, imgs.length);
+        let i = 0; // 현재 인덱스
+        let timer = null; // 자동재생 핸들
+        const GAP = 3000; // 자동 전환 간격(ms)
+
+        // 슬라이드 전환 함수
+        function showSlide(nextIndex) {
+          // 현재 슬라이드에서 'is-active' 클래스 제거
+          if (pages[i]) pages[i].classList.remove("is-active");
+          if (imgs[i]) imgs[i].classList.remove("is-active");
+
+          // 다음 인덱스 계산 및 'is-active' 클래스 추가
+          i = (nextIndex + n) % n;
+          if (pages[i]) pages[i].classList.add("is-active");
+          if (imgs[i]) imgs[i].classList.add("is-active");
+        }
+
+        // 다음 슬라이드로 이동
+        function next() {
+          showSlide(i + 1);
+        }
+
+        // 이전 슬라이드로 이동
+        function prev() {
+          showSlide(i - 1);
+        }
+
+        // 자동재생 시작
+        function startAuto() {
+          stopAuto();
+          timer = setInterval(next, GAP);
+        }
+
+        // 자동재생 중지
+        function stopAuto() {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+        }
+
+        // 초기 상태 설정
+        showSlide(0);
+        startAuto();
+
+        // 사용자 상호작용 이벤트
+        if (btn) {
+          btn.addEventListener("click", () => {
+            stopAuto();
+            next();
+            startAuto();
+          });
+          btn.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            stopAuto();
+            prev();
+            startAuto();
+          });
+        }
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") {
+            stopAuto();
+            next();
+            startAuto();
+          } else if (e.key === "ArrowLeft") {
+            stopAuto();
+            prev();
+            startAuto();
+          }
+        });
+
+        // 터치 스와이프
+        let startX = null;
+        root.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+            stopAuto();
+          },
+          {
+            passive: true,
+          }
+        );
+        root.addEventListener(
+          "touchend",
+          (e) => {
+            if (startX == null) return;
+            const dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+            startX = null;
+            startAuto();
+          },
+          {
+            passive: true,
+          }
+        );
+      });
+    </script>
+  </body>
 </html>
